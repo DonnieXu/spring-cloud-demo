@@ -1,4 +1,4 @@
-package com.mode;
+package com.curious;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

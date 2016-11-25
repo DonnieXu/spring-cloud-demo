@@ -1,4 +1,4 @@
-package com.mode.api;
+package com.curious.api;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
