@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: web
-Implementation-Version: 3.0
-Implementation-Vendor: Shanghai Yedao Technology
-Built-By: Mode
-Built-Date: 16-7-21 16:35:12
-Built-With: gradle-2.13, groovy-2.4.4
-Created-By: Java 1.8.0_92 (Oracle Corporation)
-
