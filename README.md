@@ -1,2 +1,2 @@
-# spring-cloud-demo
-a demo when studying spring-cloud
+# Spring cloud demo
+
