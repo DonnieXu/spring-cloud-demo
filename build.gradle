@@ -17,7 +17,6 @@ subprojects {
     apply plugin: 'spring-boot'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
-    apply plugin: "jacoco"
     apply plugin: "io.spring.dependency-management"
 
     archivesBaseName = 'spring-cloud-demo'
@@ -27,20 +26,6 @@ subprojects {
     // Global settings
     ext {
         // dependencies library versions
-        jjwtVersion = '0.6.0'
-        securityVersion = '3.2.5.RELEASE'
-        ossVersion = '2.2.3'
-        springFoxVersion = '2.4.0'
-        jsonpathVersion = '2.0.0'
-        elasticSearchVersion = '2.3.5'
-        springBootStarterDataNeo4jVersion = '1.4.0.RELEASE'
-        springDataCommonsVersion = '1.12.0.RELEASE'
-        springDataNeo4jVersion = '4.1.0.RELEASE'
-        thumbnailVersion = '0.4.8'
-        jhlabsFiltersVersion = '2.0.235-1'
-        testngVersion = '6.9.5'
-        jpushVersion = '3.2.10'
-        jacocoVersion = '0.7.7.201606060606'
         springCloudVersion = '1.2.1.RELEASE'
         springCloudAwsVersion = '1.1.3.RELEASE'
         commonsIoVersion = '2.5'
@@ -65,7 +50,8 @@ subprojects {
 
     // Apply 'war' plugin for all war projects
     configure([project(":cloud-config-server"),
-               project(":cloud-simple-server-a")]) {
+               project(":cloud-simple-server-a"),
+               project(":cloud-media-service")]) {
         apply plugin: 'war'
     }
 
@@ -88,7 +74,10 @@ project(':cloud-config-server') {
     dependencies {
         // Spring cloud config server
         compile("org.springframework.cloud:spring-cloud-config-server:${springCloudVersion}")
-
+        // Spring Boot actuator
+        compile("org.springframework.boot:spring-boot-starter-actuator")
+        // Spring cloud bus
+//        compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:${springCloudVersion}")
     }
 }
 
@@ -100,7 +89,37 @@ project(':cloud-simple-server-a') {
     dependencies {
         // Spring Boot MVC
         compile("org.springframework.boot:spring-boot-starter-web")
+        // Spring Boot actuator
+        compile("org.springframework.boot:spring-boot-starter-actuator")
         // Spring cloud config
         compile("org.springframework.cloud:spring-cloud-starter-config:${springCloudVersion}")
+        // Spring cloud config server
+        compile("org.springframework.cloud:spring-cloud-config-client:${springCloudVersion}")
+        // Spring cloud bus
+//        compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:${springCloudVersion}")
+    }
+}
+
+project(':cloud-media-service') {
+    war {
+        classifier = 'cloud-media-service'
+    }
+
+    dependencies {
+        // Spring Boot MVC
+        compile("org.springframework.boot:spring-boot-starter-web")
+        // Spring Boot actuator
+        compile("org.springframework.boot:spring-boot-starter-actuator")
+        // Spring cloud config
+        compile("org.springframework.cloud:spring-cloud-starter-config:${springCloudVersion}")
+        // Spring cloud config server
+        compile("org.springframework.cloud:spring-cloud-config-client:${springCloudVersion}")
+        // Spring cloud bus
+//        compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:${springCloudVersion}")
+        // Spring Boot JPA
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        // MySQL Java Driver
+        compile("mysql:mysql-connector-java")
+
     }
 }
