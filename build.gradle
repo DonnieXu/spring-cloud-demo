@@ -51,7 +51,9 @@ subprojects {
     // Apply 'war' plugin for all war projects
     configure([project(":cloud-config-server"),
                project(":cloud-simple-server-a"),
-               project(":cloud-media-service")]) {
+               project(":cloud-media-service"),
+               project(":cloud-eureka-server"),
+               project(":cloud-compute-service")]) {
         apply plugin: 'war'
     }
 
@@ -63,6 +65,20 @@ subprojects {
         compile.exclude group:'org.apache.logging.log4j'
     }
 
+}
+
+project(':cloud-eureka-server') {
+
+    war {
+        classifier = 'cloud-eureka-server'
+    }
+
+    dependencies {
+        // Spring Boot MVC
+        compile("org.springframework.boot:spring-boot-starter-web")
+        // Spring cloud eureka server
+        compile("org.springframework.cloud:spring-cloud-starter-eureka-server:${springCloudVersion}")
+    }
 }
 
 project(':cloud-config-server') {
@@ -78,6 +94,9 @@ project(':cloud-config-server') {
         compile("org.springframework.boot:spring-boot-starter-actuator")
         // Spring cloud bus
 //        compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:${springCloudVersion}")
+        // Spring cloud eureka
+        compile("org.springframework.cloud:spring-cloud-starter-eureka:${springCloudVersion}")
+
     }
 }
 
@@ -121,5 +140,21 @@ project(':cloud-media-service') {
         // MySQL Java Driver
         compile("mysql:mysql-connector-java")
 
+    }
+}
+
+project(':cloud-compute-service') {
+
+    war {
+        classifier = 'cloud-compute-service'
+    }
+
+    dependencies {
+        // Spring cloud eureka
+        compile("org.springframework.cloud:spring-cloud-starter-eureka:${springCloudVersion}")
+        // Spring Boot MVC
+        compile("org.springframework.boot:spring-boot-starter-web")
+        // Spring Boot actuator
+        compile("org.springframework.boot:spring-boot-starter-actuator")
     }
 }

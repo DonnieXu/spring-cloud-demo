@@ -3,4 +3,6 @@ rootProject.name = 'spring-cloud-demo'
 include 'cloud-config-server'
 include 'cloud-simple-server-a'
 include 'cloud-media-service'
+include 'cloud-eureka-server'
+include 'cloud-compute-service'
 
