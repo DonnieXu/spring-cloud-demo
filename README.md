@@ -9,10 +9,12 @@ keytool -genkeypair -alias mytestkey -keyalg RSA \
 put the file server.jks to resource directory of config server.
 
 then the config will be:
+```
 encrypt.key-store.location=classpath:/server.jks
 encrypt.key-store.password=letmein
 encrypt.key-store.alias=mytestkey
 encrypt.key-store.secret=changeme
+```
 
 ## How to refresh datasource
 when i want to refresh the datasource auto created by spring boot,
