@@ -14,7 +14,7 @@ import com.curious.service.MediaService;
 @RestController
 @RequestMapping("")
 @RefreshScope
-public class MediaApi {
+public class MediaController {
 
     @Autowired
     private MediaService mediaService;

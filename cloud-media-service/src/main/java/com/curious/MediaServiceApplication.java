@@ -2,12 +2,12 @@ package com.curious;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * Created by xudong on 2016/11/24.
  */
-@RefreshScope
+@EnableDiscoveryClient
 @SpringBootApplication
 public class MediaServiceApplication {
 

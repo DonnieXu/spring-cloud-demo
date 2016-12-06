@@ -5,4 +5,6 @@ include 'cloud-media-service'
 include 'cloud-eureka-server'
 include 'cloud-compute-service'
 include 'cloud-message-service'
+include 'cloud-ribbon-consumer'
+include 'cloud-feign-consumer'
 

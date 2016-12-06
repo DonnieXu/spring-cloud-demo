@@ -10,8 +10,6 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.curious.service.MessageService;
-
 /**
  * Created by xudong on 2016/11/30.
  */
@@ -29,21 +27,5 @@ public class DataSourceConfig {
     public DataSource dataSource() {
         System.out.println(url);
         return DataSourceBuilder.create().build();
-    }
-
-    @Value("${message}")
-    private String message;
-
-    @Value("${encryptMessage}")
-    private String encryptMessage;
-
-    @Bean
-    @RefreshScope
-    public MessageService messageService() {
-        System.out.println("creating message service");
-        MessageService exampleService = new MessageService();
-        exampleService.setMessage(message);
-        exampleService.setEncryptMessage(encryptMessage);
-        return exampleService;
     }
 }

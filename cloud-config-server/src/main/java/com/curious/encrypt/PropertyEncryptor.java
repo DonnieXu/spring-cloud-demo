@@ -27,15 +27,15 @@ public class PropertyEncryptor {
         if (keywords != null && keywords.length > 0) {
             checkKeyword = true;
         }
-        return encryptByScanner(scanner, alias, checkKeyword, keywords);
+        return encryptWithScanner(scanner, alias, checkKeyword, keywords);
     }
 
     public String encryptMultiProperty(String multiProperties, String alias) throws Exception {
         Scanner scanner = new Scanner(multiProperties);
-        return encryptByScanner(scanner, alias, false, null);
+        return encryptWithScanner(scanner, alias, false, null);
     }
 
-    private String encryptByScanner(Scanner scanner, String alias, boolean checkKeyword, String[] keywords) throws Exception {
+    private String encryptWithScanner(Scanner scanner, String alias, boolean checkKeyword, String[] keywords) throws Exception {
         HashMap<String, String> keys = new HashMap<>();
         keys.put("key", alias);
         TextEncryptor encryptor = locator.locate(keys);

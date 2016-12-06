@@ -55,7 +55,8 @@ subprojects {
                project(":cloud-config-server"),
                project(":cloud-media-service"),
                project(":cloud-compute-service"),
-               project(":cloud-message-service")]) {
+               project(":cloud-message-service"),
+               project(":cloud-ribbon-consumer")]) {
         apply plugin: 'war'
     }
 
@@ -78,8 +79,12 @@ project(':cloud-eureka-server') {
     dependencies {
         // Spring Boot MVC
         compile("org.springframework.boot:spring-boot-starter-web")
+        // Spring Boot actuator
+        compile("org.springframework.boot:spring-boot-starter-actuator")
         // Spring cloud eureka server
         compile("org.springframework.cloud:spring-cloud-starter-eureka-server:${springCloudVersion}")
+        // Spring cloud bus
+        compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:${springCloudVersion}")
     }
 }
 
@@ -175,5 +180,28 @@ project(':cloud-compute-service') {
         compile("org.springframework.boot:spring-boot-starter-amqp")
         // Spring cloud bus
         compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:${springCloudVersion}")
+    }
+
+}
+
+project(':cloud-ribbon-consumer') {
+
+    war {
+        classifier = 'cloud-ribbon-consumer'
+    }
+
+    dependencies {
+        // Spring Boot MVC
+        compile("org.springframework.boot:spring-boot-starter-web")
+        // Spring Boot actuator
+        compile("org.springframework.boot:spring-boot-starter-actuator")
+        // Spring Boot amqp
+        compile("org.springframework.boot:spring-boot-starter-amqp")
+        // Spring cloud bus
+        compile("org.springframework.cloud:spring-cloud-starter-bus-amqp:${springCloudVersion}")
+        // Spring cloud eureka
+        compile("org.springframework.cloud:spring-cloud-starter-eureka:${springCloudVersion}")
+        // Spring cloud ribbon
+        compile("org.springframework.cloud:spring-cloud-starter-ribbon:${springCloudVersion}")
     }
 }
